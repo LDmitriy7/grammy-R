@@ -7,15 +7,21 @@ import {
   ReplyKeyboardRemove,
 } from "./deps.ts"
 
-type KeyboardMarkup = ReplyKeyboardMarkup | InlineKeyboardMarkup
-type ReplyMarkup = KeyboardMarkup | ReplyKeyboardRemove | ForceReply
-type Texts = Record<string, string>
+type ReplyMarkup =
+  | ReplyKeyboardMarkup
+  | InlineKeyboardMarkup
+  | ReplyKeyboardRemove
+  | ForceReply
 
-interface RFlavor<T extends Texts> {
-  texts: T
-  rt: (text: string, markup?: ReplyMarkup) => Promise<Message.TextMessage>
-  r: (textKey: keyof T, markup?: ReplyMarkup) => Promise<Message.TextMessage>
+class Msg {
+  constructor(public text: string, public markup?: ReplyMarkup) {}
 }
 
-type RContext<T extends Texts> = Context & RFlavor<T>
-export type { RContext, ReplyMarkup, RFlavor, Texts }
+interface RFlavor {
+  r: (msg: Msg) => Promise<Message.TextMessage>
+}
+
+type RContext = Context & RFlavor
+
+export { Msg }
+export type { RContext, ReplyMarkup, RFlavor }

@@ -1,2 +1,3 @@
 export { setR } from "./src/middleware.ts"
-export type { RContext, ReplyMarkup, RFlavor, Texts } from "./src/types.ts"
+export { Msg } from "./src/types.ts"
+export type { RContext, ReplyMarkup, RFlavor } from "./src/types.ts"

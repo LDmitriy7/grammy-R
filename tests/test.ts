@@ -1,11 +1,11 @@
-import { setR } from "../mod.ts"
-import { Composer } from "../src/deps.ts"
+import env from "https://deno.land/x/parse_env@v0.0.1/mod.ts"
+import { Msg, RContext, setR } from "../mod.ts"
+import { Bot } from "../src/deps.ts"
 
-const texts = { start: "Hello", help: "Help:" }
-const composer = new Composer(setR(texts))
+const token = env.str("TOKEN")
+const bot = new Bot<RContext>(token)
+const msg = new Msg("Hello!", { force_reply: true })
 
-composer.command("start", (ctx) => ctx.r("start"))
-composer.command("help", (ctx) => {
-  const text = `${ctx.texts.help} ...`
-  return ctx.rt(text)
-})
+bot.use(setR)
+bot.command("start", (ctx) => ctx.r(msg))
+bot.start()
