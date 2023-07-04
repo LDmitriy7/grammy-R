@@ -3,11 +3,11 @@ export {
   Composer,
   Context,
   type NextFunction,
-} from "https://deno.land/x/grammy@v1.16.0/mod.ts"
+} from "https://deno.land/x/grammy/mod.ts"
 export type {
   ForceReply,
   InlineKeyboardMarkup,
   Message,
   ReplyKeyboardMarkup,
   ReplyKeyboardRemove,
-} from "https://deno.land/x/grammy@v1.16.0/types.ts"
+} from "https://deno.land/x/grammy/types.ts"
